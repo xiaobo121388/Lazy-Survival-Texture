@@ -1,0 +1,36 @@
+{
+    "namespace": "em_f1_button",
+    
+    "f1_button_panel": {
+        "type": "panel",
+        "size": [ "100%", "100%" ],
+        "controls": [
+            {
+                "f1_button@common.button": {
+                    "visible":"$pocket_edition",
+                    "$pressed_button_name": "button.hide_gui_all",
+                    "sound_name": "nothing",
+                    "size": [ 18, 18 ],
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "offset": [ -1, -1 ],
+                    "controls": [
+                        {
+                            "texture": {
+                                "type": "image",
+                                "texture": "textures/ui/f1_button",
+                                "bindings": [
+                                    {
+                                        "binding_name": "#hud_visible",
+                                        "binding_name_override": "#visible",
+                                        "binding_type": "global"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+   "num_mip_levels" : 4,
+   "padding" : 8,
+   "resource_pack_name" : "vanilla",
+   "texture_data" : {
+      "piston_side_stick" : {
+         "textures" : [ "textures/blocks/piston_side_stick" ]
+      },
+      "monster_egg": {
+         "textures": [
+           "textures/blocks/cobblestone_infest",
+           "textures/blocks/stonebrick_infest",
+           "textures/blocks/stonebrick_mossy_infest",
+           "textures/blocks/stonebrick_cracked_infest",
+           "textures/blocks/stonebrick_carved_infest",
+           "textures/blocks/stone_infest"
+         ]
+       },
+       "deepslate_top_infest": {
+         "textures": "textures/blocks/deepslate/deepslate_top_infest"
+       },
+       "deepslate_infest": {
+         "textures": "textures/blocks/deepslate/deepslate_infest"
+       }
+   },
+ 
+   "texture_name" : "atlas.terrain"
+}

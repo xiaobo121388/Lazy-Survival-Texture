@@ -1,0 +1,317 @@
+{
+  "pocket_refresh_image": {
+    "type": "image",
+    "size": [
+      35,
+      33
+    ],
+    "offset": [
+      1,
+      0
+    ],
+    "texture": "textures/ui/TabLeftBackTopMost",
+    "controls": [
+      {
+        "test_button@common.button": {
+          "size": [
+            25,
+            25
+          ],
+          "offset": [
+            0,
+            0
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "#xiaobo_trade_refresh",
+              "mapping_type": "pressed"
+            },
+            {
+              "from_button_id": "button.menu_ok",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "focused"
+            }
+          ],
+          "controls": [
+            {
+              "default@trade2_pocket.refresh_icon": {}
+            },
+            {
+              // 悬停状态
+              "hover@trade2_pocket.refresh_icon_hover": {
+                "$icon_alpha": 0.8
+              }
+            },
+            {
+              // 按下状态
+              "pressed@trade2_pocket.refresh_icon_pressed": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  /*//// Custom Left Tabs ////*/
+  "enchant_icon": {
+    "type": "custom",
+    "renderer": "enchanting_book_renderer"
+    // "bindings": [
+    //   {
+    //     "binding_type": "view",
+    //     "source_control_name": "enchanted_tab_toggle",
+    //     "source_property_name": "#toggle_state",
+    //     "target_property_name": "#open"
+    //   }
+    // ]
+  },
+  "custom_left_tab@common_tabs.pocket_tab_left": {
+    "$toggle_name": "left_tab",
+    "$radio_toggle_group": true
+  },
+  "left_tab_enchanted@custom_left_tab": {
+    "$toggle_group_forced_index": 2,
+    "$tab_view_binding_name": "enchanted_tab_toggle",
+    "$toggle_state_binding_name": "#is_left_tab_enchanted",
+    "$toggle_binding_type": "global",
+    "$tab_content": "trade2_pocket.enchant_icon"
+  },
+  "c_left_tab_trade@custom_left_tab": {
+    "$toggle_default_state": true,
+    "$tab_view_binding_name": "trade_tab_toggle",
+    "$toggle_group_forced_index": 0,
+    "$toggle_name": "left_tab",
+    "$tab_content": "trade2_pocket.trade_icon"
+  },
+  "c_left_tab_inventory@custom_left_tab": {
+    "$tab_view_binding_name": "inventory_left_tab_toggle",
+    "$toggle_group_forced_index": 1,
+    "$toggle_name": "left_tab",
+    "$tab_content": "trade2_pocket.chest_item_renderer"
+  },
+  // "left_navigation_tabs": {
+  //   "controls": [
+  //     { "left_tab_enchanted@trade2_pocket.left_tab_enchanted": {} },
+  //     { "padding_0": { "type": "panel", "size": [0, 1] } },
+  //     { "c_left_tab_trades@trade2_pocket.c_left_tab_trade": {} },
+  //     { "padding": { "type": "panel", "size": [0, 1] } },
+  //     {
+  //       "c_left_tab_inventory@trade2_pocket.c_left_tab_inventory": {
+  //         "$is_bottom_most_tab": true
+  //       }
+  //     }
+  //   ]
+  // },
+  "left_panel": {
+    "type": "stack_panel",
+    "size": [
+      "fill",
+      "100%"
+    ],
+    "orientation": "horizontal",
+    "controls": [
+      {
+        "gamepad_helpers_and_tabs_holder": {
+          "type": "panel",
+          "size": [
+            "100%c",
+            "100%"
+          ],
+          "controls": [
+            {
+              "tabs_left_gamepad_helpers@common.tabs_left_gamepad_helpers": {
+                "size": [
+                  14,
+                  0
+                ],
+                "inherit_max_sibling_height": true,
+                "anchor_from": "bottom_left",
+                "anchor_to": "bottom_left"
+              }
+            },
+            {
+              "navigation_tabs_holder": {
+                "type": "panel",
+                "size": [
+                  "100%c - 4px",
+                  "100%c"
+                ],
+                "anchor_from": "bottom_right",
+                "anchor_to": "bottom_right",
+                "controls": [
+                  {
+                    "left_navigation_tabs@trade2_pocket.left_navigation_tabs": {}
+                  }
+                ]
+              }
+            },
+            {
+              "refresh_button_panel": {
+                "type": "panel",
+                "layer": 100,
+                "size": [
+                  "100%c - 4px",
+                  "100%c"
+                ],
+                "anchor_from": "top_right",
+                "anchor_to": "top_right",
+                "controls": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "content@common.root_panel": {
+          "size": [
+            "fill",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg@common.common_panel": {
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "$show_close_button": false
+              }
+            },
+            {
+              "inventory_scroll_panel@trade2_pocket.inventory_scroll_panel": {
+                "layer": 2,
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "inventory_left_tab_toggle",
+                    "source_property_name": "#toggle_state",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "trade_scroll_panel@trade2.trade_scroll_panel": {
+                "layer": 2,
+                "$toggle_size": [
+                  "100%",
+                  32
+                ],
+                "$item_renderer_size": [
+                  24,
+                  24
+                ],
+                "$toggle_content_control": "trade2_pocket.toggle_content",
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "trade_tab_toggle",
+                    "source_property_name": "#toggle_state",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "refresh_icon_hover": {
+    "type": "image",
+    "texture": "textures/ui/refresh_white_hover",
+    "layer": 3,
+    "size": [
+      16,
+      16
+    ],
+    "alpha": "$icon_alpha",
+    "$icon_alpha|default": 1
+  },
+  "refresh_icon": {
+    "type": "image",
+    "texture": "textures/ui/refresh_white_normal",
+    "layer": 3,
+    "size": [
+      16,
+      16
+    ],
+    "alpha": "$icon_alpha",
+    "$icon_alpha|default": 1
+  },
+  "refresh_icon_pressed": {
+    "type": "image",
+    "texture": "textures/ui/refresh_white_normal_pressed",
+    "layer": 3,
+    "size": [
+      16,
+      16
+    ],
+    "alpha": "$icon_alpha",
+    "$icon_alpha|default": 1
+  },
+  /*//// Trade Unlocker ////*/
+  "arrow_holder/arrow_image": {
+    "bindings": []
+  },
+  "arrow_holder": {
+    "modifications": [
+      {
+        "control_name": "lock_image",
+        "operation": "remove"
+      }
+    ]
+  },
+  "trade_and_help_buttons/how_to_play_button_holder/how_to_play_button": {
+    "$button_text": "64",
+    "property_bag": {
+      "#collection_name": "trade2_result_item"
+    },
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.container_auto_place",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.container_auto_place",
+        "mapping_type": "pressed"
+      }
+    ]
+  }
+  // "screen_panel": {
+  //   "modifications": [
+  //     {
+  //       "array_name": "controls",
+  //       "operation": "insert_front",
+  //       "value": {
+  //         "x": {
+  //           "type": "custom",
+  //           "size": ["100%", "100%"],
+  //           "renderer": "gradient_renderer",
+  //           "color1": [0, 0, 0, 1],
+  //           "color2": [0, 0, 0, 1],
+  //           "layer": 99998,
+  //           "anims": ["trade2.alpha_1"],
+  //           "controls": [
+  //             {
+  //               "preview": {
+  //                 "type": "label",
+  //                 "text_alignment": "center",
+  //                 "text": "THIS IS PREVIEW PACK\nDOWNLOAD FULL PACK ON MCPEDL.COM",
+  //                 "font_type": "smooth",
+  //                 "anims": ["trade2.alpha_1"],
+  //                 "font_scale_factor": 3,
+  //                 "layer": 99999
+  //               }
+  //             }
+  //           ]
+  //         }
+  //       }
+  //     }
+  //   ]
+  // }
+}

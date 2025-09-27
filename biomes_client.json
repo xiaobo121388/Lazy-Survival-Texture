@@ -1,0 +1,11 @@
+{
+	"biomes": {
+		"default": {
+			"fog_identifier": "xiaobo:clearer_fog",
+			"fog_ids_to_merge": ["xiaobo:clearer_fog"],
+			"inherit_from_prior_fog": false,
+			"remove_all_prior_fog": true,
+			"water_surface_transparency": 0.45
+		}
+	}
+}

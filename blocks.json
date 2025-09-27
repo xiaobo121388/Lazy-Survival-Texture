@@ -1,0 +1,31 @@
+{
+   "format_version":"1.1.0",
+   "sticky_piston" : {
+      "carried_textures" : {
+         "down" : "piston_bottom",
+         "side" : "piston_side_stick",
+         "up" : "piston_top_sticky"
+      },
+      "sound" : "stone",
+      "textures" : {
+         "down" : "piston_bottom",
+         "side" : "piston_side_stick",
+         "up" : "piston_top"
+      }
+   },
+   "monster_egg" : {
+      "textures" : "monster_egg"
+   },
+   "infested_deepslate" : {
+      "isotropic" : {
+         "down" : true,
+         "up" : true
+      },
+      "sound" : "deepslate",
+      "textures" : {
+         "down" : "deepslate_top_infest",
+         "side" : "deepslate_infest",
+         "up" : "deepslate_top_infest"
+      }
+   }
+}

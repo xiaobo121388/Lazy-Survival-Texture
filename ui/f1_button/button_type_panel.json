@@ -1,0 +1,26 @@
+
+{
+  "namespace": "f1_xbbutton_panel",
+  "button@common.button": {
+    "$focus_enabled": false,
+    "alpha": 0.7,
+    "controls": [
+      { "default": {} },
+      { "hover": {} },
+      { "pressed": {} },
+      { "content@f1_xbbutton_panel.image": {} }
+    ]
+  },
+  "image": {
+    "layer": 2,
+    "type": "image",
+    "texture": "textures/ui/f1_button",
+    "size": ["100%","100%"],
+    "bindings": [
+      {
+        "binding_name": "#hud_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  }
+}

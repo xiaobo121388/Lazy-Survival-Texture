@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "by 哔哩哔哩 别揪小波的天线",
+    "name": "懒人生存整合包2",
+    "uuid": "79d797e5-3e97-42d7-a2cb-251d389f6840",
+    "version": [2, 1, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "description": "资源包",
+      "type": "resources",
+      "uuid": "cd45b37a-5be5-43fe-a4ef-103713796e9f",
+      "version": [2, 1, 0]
+    }
+  ]
+}

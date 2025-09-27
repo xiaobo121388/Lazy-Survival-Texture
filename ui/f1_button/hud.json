@@ -1,0 +1,20 @@
+
+{
+  "namespace": "f1_xbbutton",
+  
+  "hide_button_panel": {
+    "type": "input_panel",
+    "prevent_touch_input": true,
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "size": [18,18],
+    "offset": [-1,-1],
+    "controls": [
+      {
+        "hide_button_panel@f1_xbbutton_panel.button": {
+          "$pressed_button_name": "button.hide_gui_all"
+        }
+      }
+    ]
+  }
+}

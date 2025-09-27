@@ -1,0 +1,65 @@
+{
+  "namespace": "crafting",
+  "Fast_craft_button": {
+    "type": "button",
+    "property_bag": {
+      "#collection_name": "crafting_output_items",
+      "#collection_index": 0
+    },
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.crafting_output_tertiary",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.crafting_output_tertiary",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+  "stonecutter_Fast_craft_button@stonecutter.Fast_craft_button": {
+    "property_bag": {
+      "#collection_name": "stonecutter_result_items"
+    },
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.container_auto_place",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+  "arrow_icon": {
+    "controls": [
+      { "stonecutter_Fast_craft_button@stonecutter.stonecutter_Fast_craft_button": {} }
+    ]
+  },
+  "no_coalesce_container_slot_button": {
+    "$is_output|default": false,
+    "modifications": [
+      {
+        "array_name": "button_mappings",
+        "operation": "insert_front",
+        "value": [
+          {
+            "ignored": "$is_output",
+            "from_button_id": "button.menu_select",
+            "to_button_id": "$button_auto_place",
+            "mapping_type": "double_pressed"
+          },
+          {
+            "ignored": "$is_output",
+            "from_button_id": "button.menu_ok",
+            "to_button_id": "$button_auto_place",
+            "mapping_type": "double_pressed"
+          }
+        ]
+      }
+    ]
+  },
+  "output_no_coalesce_container_slot_button": {
+    "$is_output": true
+  }
+}
