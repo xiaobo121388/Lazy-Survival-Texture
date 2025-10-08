@@ -1,16 +1,28 @@
 {
     "hud_content": {
         "type": "panel",
-        "$hud_size": ["100%", "100%"],
-        "$hud_player_rend_desktop_offset|default": [15, 15],
+        "$hud_size": [
+            "100%",
+            "100%"
+        ],
+        "$hud_player_rend_desktop_offset|default": [
+            15,
+            15
+        ],
         "variables": [
             {
                 "requires": "($is_holographic and not $is_living_room_mode)",
-                "$hud_player_rend_desktop_offset": [100, 50]
+                "$hud_player_rend_desktop_offset": [
+                    100,
+                    50
+                ]
             },
             {
                 "requires": "($compress_hud_width)",
-                "$hud_size": ["90%", "100%"]
+                "$hud_size": [
+                    "90%",
+                    "100%"
+                ]
             }
         ],
         "size": "$hud_size",
@@ -23,6 +35,116 @@
             },
             {
                 "f1_button@em_f1_button.f1_button_panel": {}
+            }
+        ]
+    },
+    "item_name_text_root": {
+        "type": "panel",
+        "size": [
+            "100%cm",
+            "100%cm"
+        ],
+        "$show_interact_padding|default": false,
+        "$show_survival_padding|default": false,
+        "$show_text_background|default": false,
+        "$text_color|default": "$tool_tip_text",
+        "$text_binding|default": "#item_text",
+        "anchor_from": "bottom_middle",
+        "anchor_to": "bottom_middle",
+        "$wait_duration|default": 1,
+        "$destroy_id|default": "item_name_text",
+        "controls": [
+            {
+                "item_text_aligner": {
+                    "type": "stack_panel",
+                    "size": [
+                        "100%cm",
+                        "100%c"
+                    ],
+                    "controls": [
+                        {
+                            "item_text_control": {
+                                "type": "panel",
+                                "size": [
+                                    "100%cm",
+                                    "100%cm"
+                                ],
+                                "controls": [
+                                    {
+                                        "item_text_background": {
+                                            "ignored": "(not $show_text_background)",
+                                            "type": "image",
+                                            "size": [
+                                                "100%sm + 12px",
+                                                "100%sm + 5px"
+                                            ],
+                                            "texture": "textures/ui/hud_tip_text_background",
+                                            "alpha": "@hud.anim_item_name_background_alpha_in"
+                                        }
+                                    },
+                                    {
+                                        "item_text_label": {
+                                            "type": "label",
+                                            "max_size": [
+                                                200,
+                                                20
+                                            ],
+                                            "text_alignment": "center",
+                                            "layer": 31,
+                                            "color": "$text_color",
+                                            "text": "#text",
+                                            "alpha": "@hud.anim_item_name_text_alpha_in",
+                                            // Disable profanity filter for this control so that
+                                            // we can enable it on the fly only for items with custom names
+                                            "enable_profanity_filter": false,
+                                            "bindings": [
+                                                {
+                                                    "binding_name": "$text_binding",
+                                                    "binding_name_override": "#text"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "interact_padding@common.empty_panel": {
+                                "visible": "$show_interact_padding",
+                                // To not overlap with the interact button
+                                // the text needs to move up by 18
+                                "size": [
+                                    "100%sm",
+                                    18
+                                ],
+                                "bindings": [
+                                    {
+                                        "binding_name": "#interact_visible",
+                                        "binding_name_override": "#visible",
+                                        "binding_condition": "always"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "survival_buffer@common.empty_panel": {
+                                "visible": "$show_survival_padding",
+                                // Survival HUD has elements above the hot bar
+                                // meaning the text needs to move up
+                                "size": [
+                                    "100%sm",
+                                    17
+                                ],
+                                "bindings": [
+                                    {
+                                        "binding_name": "#show_survival_ui",
+                                        "binding_name_override": "#visible"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
             }
         ]
     }
