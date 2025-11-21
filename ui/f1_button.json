@@ -1,5 +1,5 @@
 {
-    "namespace": "em_f1_button",
+    "namespace": "f1_button",
     
     "f1_button_panel": {
         "type": "panel",
@@ -13,7 +13,7 @@
                     "size": [ 18, 18 ],
                     "anchor_from": "top_right",
                     "anchor_to": "top_right",
-                    "offset": [ -1, -1 ],
+                    "offset": [ -10, -1 ],
                     "controls": [
                         {
                             "texture": {

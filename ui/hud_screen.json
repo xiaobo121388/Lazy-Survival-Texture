@@ -1,43 +1,4 @@
 {
-    "hud_content": {
-        "type": "panel",
-        "$hud_size": [
-            "100%",
-            "100%"
-        ],
-        "$hud_player_rend_desktop_offset|default": [
-            15,
-            15
-        ],
-        "variables": [
-            {
-                "requires": "($is_holographic and not $is_living_room_mode)",
-                "$hud_player_rend_desktop_offset": [
-                    100,
-                    50
-                ]
-            },
-            {
-                "requires": "($compress_hud_width)",
-                "$hud_size": [
-                    "90%",
-                    "100%"
-                ]
-            }
-        ],
-        "size": "$hud_size",
-        "controls": [
-            {
-                "root_panel@hud.root_panel": {}
-            },
-            {
-                "camera_renderer@camera_renderer": {}
-            },
-            {
-                "f1_button@em_f1_button.f1_button_panel": {}
-            }
-        ]
-    },
     "item_name_text_root": {
         "type": "panel",
         "size": [
@@ -145,6 +106,433 @@
                         }
                     ]
                 }
+            }
+        ]
+    },
+    "player_list_label": {
+        "type": "stack_panel",
+        "size": [
+            100,
+            12
+        ],
+        "orientation": "horizontal",
+        "controls": [
+            {
+                "padding_1": {
+                    "type": "panel",
+                    "size": [
+                        2,
+                        0
+                    ]
+                }
+            },
+            {
+                "player_avatar": {
+                    "type": "image",
+                    "texture": "#texture",
+                    "size": [
+                        10,
+                        10
+                    ],
+                    "texture_file_system": "#texture_source",
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "bindings": [
+                        {
+                            "binding_name": "#texture",
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection"
+                        },
+                        {
+                            "binding_name": "#texture_source",
+                            "binding_name_override": "#texture_file_system",
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection"
+                        },
+                        {
+                            "binding_name": "#gamerpic_visible",
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection",
+                            "binding_name_override": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "player_avatar_switchonline": {
+                    "type": "image",
+                    "texture": "textures/ui/lan_icon",
+                    "size": [
+                        10,
+                        10
+                    ],
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "bindings": [
+                        {
+                            "binding_name": "(not #gamerpic_visible)",
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection",
+                            "binding_name_override": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "padding_2": {
+                    "type": "panel",
+                    "size": [
+                        3,
+                        0
+                    ]
+                }
+            },
+            {
+                "player_name": {
+                    "type": "label",
+                    "text": "#gamertag",
+                    "size": [
+                        "fill",
+                        10
+                    ],
+                    "font_type": "unicode",
+                    "bindings": [
+                        {
+                            "binding_name": "#gamertag",
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "player_grid": {
+        "type": "grid",
+        "size": [
+            "100%",
+            "100%c"
+        ],
+        "grid_item_template": "hud.player_list_label",
+        "grid_dimension_binding": "#players_grid_dimension",
+        "collection_name": "players_collection",
+        "anchor_to": "top_left",
+        "anchor_from": "top_left",
+        "bindings": [
+            {
+                "binding_name": "#players_grid_dimension"
+            }
+        ]
+    },
+    "hud_content": {
+        "modifications": [
+            {
+                "array_name": "controls",
+                "operation": "insert_front",
+                "value": [
+                    {
+                        "tab_playerlist": {
+                            "type": "button",
+                            "size": [
+                                "100%",
+                                "100%"
+                            ],
+                            "default_control": "default",
+                            "hover_control": "hover",
+                            "pressed_control": "pressed",
+                            "$button_binding|default": "button.scoreboard",
+                            "variables": [
+                                {
+                                    "requires": "($playerlist_key = 'tab')",
+                                    "$button_binding": "button.scoreboard"
+                                },
+                                {
+                                    "requires": "($playerlist_key = 'f10')",
+                                    "$button_binding": "button.hide_tooltips"
+                                }
+                            ],
+                            "button_mappings": [
+                                {
+                                    "from_button_id": "$button_binding",
+                                    "to_button_id": "button.dummy",
+                                    "mapping_type": "global"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "default": {
+                                        "type": "input_panel",
+                                        "button_mappings": [
+                                            {
+                                                "from_button_id": "button.inventory_left",
+                                                "to_button_id": "button.hotbar_inventory_left",
+                                                "mapping_type": "global"
+                                            },
+                                            {
+                                                "from_button_id": "button.inventory_right",
+                                                "to_button_id": "button.hotbar_inventory_right",
+                                                "mapping_type": "global"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "hover": {
+                                        "type": "input_panel",
+                                        "button_mappings": [
+                                            {
+                                                "from_button_id": "button.inventory_left",
+                                                "to_button_id": "button.hotbar_inventory_left",
+                                                "mapping_type": "global"
+                                            },
+                                            {
+                                                "from_button_id": "button.inventory_right",
+                                                "to_button_id": "button.hotbar_inventory_right",
+                                                "mapping_type": "global"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "pressed": {
+                                        "type": "panel",
+                                        "anchor_from": "top_middle",
+                                        "anchor_to": "top_middle",
+                                        "size": [
+                                            90,
+                                            "100% - 84px"
+                                        ],
+                                        "offset": [
+                                            0,
+                                            23
+                                        ],
+                                        "layer": 50,
+                                        "controls": [
+                                            {
+                                                "player_list_listing": {
+                                                    "type": "image",
+                                                    "size": [
+                                                        "100%",
+                                                        "100%"
+                                                    ],
+                                                    "texture": "textures/ui/White",
+                                                    "layer": 10,
+                                                    "alpha": 0.7,
+                                                    "color": [
+                                                        0,
+                                                        0,
+                                                        0
+                                                    ],
+                                                    "anchor_from": "top_middle",
+                                                    "anchor_to": "top_middle",
+                                                    "controls": [
+                                                        {
+                                                            "player_count": {
+                                                                "type": "image",
+                                                                "anchor_from": "top_middle",
+                                                                "anchor_to": "top_middle",
+                                                                "size": [
+                                                                    "100%",
+                                                                    12
+                                                                ],
+                                                                "clips_children": true,
+                                                                "texture": "textures/ui/White",
+                                                                "color": [
+                                                                    0,
+                                                                    0,
+                                                                    0
+                                                                ],
+                                                                "alpha": 0.3,
+                                                                "controls": [
+                                                                    {
+                                                                        "players_grid_count": {
+                                                                            "type": "grid",
+                                                                            "size": [
+                                                                                "100%",
+                                                                                "default"
+                                                                            ],
+                                                                            "grid_item_template": "hud.player_count_label",
+                                                                            "grid_dimension_binding": "#players_grid_dimension",
+                                                                            "collection_name": "players_collection",
+                                                                            "anchor_to": "bottom_left",
+                                                                            "anchor_from": "bottom_left",
+                                                                            "bindings": [
+                                                                                {
+                                                                                    "binding_name": "#players_grid_dimension",
+                                                                                    "binding_condition": "always"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "player_list_scrolling_panel@common.scrolling_panel": {
+                                                                "anchor_from": "bottom_middle",
+                                                                "anchor_to": "bottom_middle",
+                                                                "size": [
+                                                                    "100%",
+                                                                    "100% - 16px"
+                                                                ],
+                                                                "$show_background": false,
+                                                                "$scrolling_content": "hud.player_grid",
+                                                                "$always_handle_scrolling": true
+                                                            }
+                                                        }
+                                                    ],
+                                                    "bindings": [
+                                                        {
+                                                            "binding_name": "#hud_visible",
+                                                            "binding_name_override": "#visible",
+                                                            "binding_type": "global"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "array_name": "controls",
+                "operation": "insert_back",
+                "value": [
+                    {
+                        "f1_button@f1_button.f1_button_panel": {}
+                    }
+                ]
+            }
+        ]
+    },
+    "player_count_label": {
+        "type": "panel",
+        "size": [
+            "100%",
+            12
+        ],
+        "controls": [
+            {
+                "glyph_inventory": {
+                    "type": "image",
+                    "offset": [
+                        2,
+                        0
+                    ],
+                    "size": [
+                        5,
+                        5
+                    ],
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "texture": "textures/ui/glyph_inventory"
+                }
+            },
+            {
+                "label": {
+                    "type": "label",
+                    "size": [
+                        "100% - 9px",
+                        10
+                    ],
+                    "text": "#text",
+                    "anchor_from": "right_middle",
+                    "anchor_to": "right_middle",
+                    "bindings": [
+                        {
+                            "binding_type": "collection_details",
+                            "binding_collection_name": "players_collection"
+                        },
+                        {
+                            "binding_type": "collection",
+                            "binding_collection_name": "players_collection",
+                            "binding_name": "#collection_index"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "('§z' + (#collection_index + 1) + '§z')",
+                            "target_property_name": "#text"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "hud_screen": {
+        "button_mappings": [
+            {
+                "from_button_id": "button.scoreboard",
+                "to_button_id": "button.scoreboard",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.hide_gui",
+                "to_button_id": "button.hide_gui_all",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.hide_tooltips",
+                "to_button_id": "button.hide_tooltips_hud",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.hide_paperdoll",
+                "to_button_id": "button.hide_paperdoll_hud",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot1",
+                "to_button_id": "button.slot_1",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot2",
+                "to_button_id": "button.slot_2",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot3",
+                "to_button_id": "button.slot_3",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot4",
+                "to_button_id": "button.slot_4",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot5",
+                "to_button_id": "button.slot_5",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot6",
+                "to_button_id": "button.slot_6",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot7",
+                "to_button_id": "button.slot_7",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot8",
+                "to_button_id": "button.slot_8",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot9",
+                "to_button_id": "button.slot_9",
+                "mapping_type": "global"
+            },
+            {
+                "from_button_id": "button.slot0",
+                "to_button_id": "button.slot_0",
+                "mapping_type": "global"
             }
         ]
     }
